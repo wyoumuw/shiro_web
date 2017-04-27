@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+	    <!-- 配置注解扫描 -->  
+    <context:annotation-config />  
+  
+    <!-- 自动扫描的包名 -->  
+    <context:component-scan base-package="com.youmu.maven.dao" />
+    
+	 <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
+     <property name="driverClassName">  
+         <value>com.mysql.jdbc.Driver</value>  
+     </property>  
+     <property name="url">  
+         <value>jdbc:mysql://localhost:3306/shiroweb?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=true</value>  
+        <!--springmybaitis是我的数据库  -->
+     </property>  
+     <property name="username">  
+         <value>root</value>  
+     </property>  
+     <property name="password">  
+         <value></value>  
+     </property>  
+ 	</bean>  
+	
+	
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
+        <property name="dataSource" ref="dataSource" />  
+        <property name="configLocation" value="classpath:mybatis-config.xml"/> 
+        <!-- 自动扫描mapping.xml文件 -->  
+        <property name="mapperLocations" value="classpath:com/youmu/maven/dao/xml/*.xml"></property>  
+    </bean>  
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+        <property name="basePackage" value="com.youmu.maven.dao" />  
+        
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>  
+    </bean>  
+    
+    
+</beans>

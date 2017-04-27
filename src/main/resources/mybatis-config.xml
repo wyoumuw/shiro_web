@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+<configuration>
+<settings>
+ <setting name="mapUnderscoreToCamelCase" value="true" />
+ </settings>
+<typeAliases>
+<typeAlias alias="User" type="com.youmu.maven.entity.User"/>
+<typeAlias alias="Role" type="com.youmu.maven.entity.Role"/>
+<typeAlias alias="Permission" type="com.youmu.maven.entity.Permission"/>
+</typeAliases>
+
+</configuration>
